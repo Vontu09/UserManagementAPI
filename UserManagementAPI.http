@@ -1,0 +1,99 @@
+@UserManagementAPI_HostAddress = http://localhost:5041
+@ContentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJpYXQiOjE3ODg2MjgxMzgsIm5iZiI6MTc4ODYyODEzOCwiZXhwIjoxNzg4NjMxNzM4LCJpc3MiOiJVc2VyTWFuYWdlbWVudEFQSSIsImF1ZCI6IlVzZXJNYW5hZ2VtZW50QVBJVXNlcnMifQ.EcMC9PJj9wRViaiTiS9B8jPa1b2p5T0f37rRAui6yM8
+
+
+### 0. LOGIN - Get JWT Token
+POST {{UserManagementAPI_HostAddress}}/api/auth/login
+Content-Type: {{ContentType}}
+
+{
+  "username": "admin",
+  "password": "password123"
+}
+
+### 1. CREATE - Add a new user
+POST {{UserManagementAPI_HostAddress}}/api/users
+Content-Type: {{ContentType}}
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "5550101781"
+}
+
+### 2. CREATE - Add another user
+POST {{UserManagementAPI_HostAddress}}/api/users
+Content-Type: {{ContentType}}
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "phone": "5550101782"
+}
+
+### 3. READ - Get all users
+GET {{UserManagementAPI_HostAddress}}/api/users
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 4. READ - Get user by ID
+GET {{UserManagementAPI_HostAddress}}/api/users/1
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 5. READ - Get another user by ID
+GET {{UserManagementAPI_HostAddress}}/api/users/2
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 6. UPDATE - Update an existing user
+PUT {{UserManagementAPI_HostAddress}}/api/users/1
+Content-Type: {{ContentType}}
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "Jonathan",
+  "lastName": "Doe",
+  "email": "jonathan.doe@example.com",
+  "phone": "5550101898"
+}
+
+### 7. UPDATE - Update another user
+PUT {{UserManagementAPI_HostAddress}}/api/users/2
+Content-Type: {{ContentType}}
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "Janice",
+  "lastName": "Johnson",
+  "email": "janice.johnson@example.com",
+  "phone": "5550101781"
+}
+
+### 8. DELETE - Remove a user
+DELETE {{UserManagementAPI_HostAddress}}/api/users/1
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 9. DELETE - Remove another user
+DELETE {{UserManagementAPI_HostAddress}}/api/users/2
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 10. READ - Verify deletion (should return 404)
+GET {{UserManagementAPI_HostAddress}}/api/users/4
+Accept: {{ContentType}}
+Authorization: Bearer {{token}}
+
+### 11. Health Check (no auth required)
+GET {{UserManagementAPI_HostAddress}}/health
+Accept: {{ContentType}}
+
+### 12. Test without token (should return 401)
+GET {{UserManagementAPI_HostAddress}}/api/users
+Accept: {{ContentType}}
