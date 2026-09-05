@@ -106,3 +106,43 @@ The API provides complete CRUD operations for user management with:
 ---
 
 ## Project Structure
+UserManagementAPI/ │ ├── 📁 Controllers/ │   ├── AuthController.cs              # Authentication & token generation │   └── UsersController.cs             # User CRUD operations │ ├── 📁 Middleware/ │   ├── ExceptionHandlingMiddleware.cs     # Global exception handling │   ├── JwtAuthenticationMiddleware.cs     # JWT token validation │   └── RequestResponseLoggingMiddleware.cs # Audit logging │ ├── 📁 Models/ │   └── User.cs                        # User entity with validation │ ├── 📁 Services/ │   ├── IUserService.cs                # User service interface │   ├── UserService.cs                 # User service implementation │   ├── IJwtTokenService.cs            # JWT service interface │   └── JwtTokenService.cs             # JWT token generation │ ├── 📄 Program.cs                      # Application configuration ├── 📄 appsettings.json                # Configuration settings ├── 📄 UserManagementAPI.csproj        # Project file ├── 📄 UserManagementAPI.http          # HTTP test requests ├── 📄 .gitignore                      # Git ignore rules ├── 📄 README.md                       # This file └── 📄 LICENSE                         # MIT License
+
+### Key Components
+
+**Controllers**: Handle HTTP requests and responses
+- `AuthController` - Login endpoint to generate JWT tokens
+- `UsersController` - CRUD endpoints for user management
+
+**Services**: Implement business logic
+- `UserService` - User data management and validation
+- `JwtTokenService` - Token generation and configuration
+
+**Middleware**: Process requests/responses
+- `ExceptionHandlingMiddleware` - Catches and formats exceptions
+- `JwtAuthenticationMiddleware` - Validates tokens on protected endpoints
+- `RequestResponseLoggingMiddleware` - Logs all API activity
+
+**Models**: Data structures
+- `User` - User entity with validation attributes
+
+---
+
+## Installation
+
+### System Requirements
+
+| Requirement | Version |
+|------------|---------|
+| .NET SDK | 9.0 or later |
+| Operating System | Windows 10+, macOS, Linux |
+| RAM | 2GB minimum |
+| Disk Space | 500MB |
+
+### Step-by-Step Installation
+
+#### Step 1: Clone Repository
+git clone https://github.com/Vontu09/UserManagementAPI.git cd UserManagementAPI
+
+#### Step 2: Restore Dependencies
+dotnet restore
